@@ -84,7 +84,7 @@ def create_key_vault_secrets(prefix: str, key_vault_name: str, conn_string: str)
 
         for name, value in secrets.items():
             secret_client.set_secret(name, value)
-            logging.info(f"Secret '{name}' set in Key Vault")
+            logging.info("A secret has been set in Key Vault")
 
         logging.info(f"All secrets created in Azure Key Vault for prefix: {prefix}")
         logging.info(f"Container '{container_name}' created with a 2-year SAS token")
