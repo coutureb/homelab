@@ -20,7 +20,7 @@ spec:
 
       containers:
         - name: linkding
-          image: sissbruecker/linkding:1.36.0
+          image: sissbruecker/linkding:1.39.1
 
           securityContext:
             allowPrivilegeEscalation: false
@@ -36,11 +36,8 @@ spec:
               protocol: TCP
 
           volumeMounts:
-            - mountPath: /etc/linkding/data
-              name: linkding-data
-            - name: secrets-store-inline
-              mountPath: /mnt/secrets-store
-              readOnly: true
+            - name: linkding-data
+              mountPath: /etc/linkding/data
 
       restartPolicy: Always
 
@@ -48,11 +45,3 @@ spec:
         - name: linkding-data
           persistentVolumeClaim:
             claimName: linkding-data
-        - name: secrets-store-inline
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: azure-kv-secrets
-            nodePublishSecretRef: # Only required when using service principal mode
-              name: secrets-store-creds # Only required when using service principal mode

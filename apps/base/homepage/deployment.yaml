@@ -28,8 +28,11 @@ spec:
         fsGroup: 1000
       containers:
         - name: homepage
-          image: "ghcr.io/gethomepage/homepage:latest"
+          image: "ghcr.io/gethomepage/homepage:v0.10.9"
           imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: homepage-env-configmap
           ports:
             - name: http
               containerPort: 3000
@@ -71,7 +74,9 @@ spec:
               name: logs
       volumes:
         - name: homepage-config
-          configMap:
-            name: homepage
+          # configMap:
+          #   name: homepage
+          secret:
+            secretName: homepage-config
         - name: logs
           emptyDir: {}
