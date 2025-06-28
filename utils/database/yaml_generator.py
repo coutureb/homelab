@@ -56,7 +56,7 @@ def create_kubernetes_config(
         )
         with open(output_path, "w") as f:
             f.write(yaml_configs)
-        logging.info(f"YAML configurations have been written to {output_path}")
+        logging.info("YAML configurations have been successfully written.")
         return output_path
     except Exception as e:
         logging.error(f"An error occurred: {e}")
