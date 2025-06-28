@@ -26,9 +26,9 @@ def delete_key_vault_secrets(prefix, key_vault_name):
         for name in secret_names:
             try:
                 secret_client.begin_delete_secret(name)
-                logging.info(f"Secret '{name}' deletion initiated in Key Vault")
+                logging.info("A secret deletion was initiated in Key Vault")
             except ResourceNotFoundError:
-                logging.info(f"Secret '{name}' not found in Key Vault")
+                logging.info("A secret was not found in Key Vault")
 
         logging.info(
             f"All secrets deletion initiated in Azure Key Vault for prefix: {prefix}"
